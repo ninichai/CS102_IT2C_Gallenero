@@ -1,0 +1,63 @@
+---
+title: "LabExercise#1_Gallenero"
+output: pdf_document
+date: "2024-02-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("rvest")
+install.packages("httr")
+install.packages("polite")
+install.packages("ggplot2")
+install.packages("kableExtra")
+
+library(tidyverse)
+library(dplyr)
+library(rvest)
+library(httr)
+library(polite)
+library(ggplot2)
+library(kableExtra)
+polite::use_manners(save_as = 'polite_scrape.R')
+
+```
+
+```{r}
+name <- character(100)
+price <- character(100)
+peoples_vote <- character(50)
+episodes <- character(50)
+year <- character(50)
+
+url <-"https://www.amazon.com/s?i=fashion-luggage&bbn=16225017011&rh=n%3A7141123011%2Cn%3A16225017011%2Cn%3A15743251%2Cn%3A15743261&ref=nav_em__nav_desktop_sa_intl_carry_ons_0_2_19_2"
+
+session <- bow(url, user_agent= "Educational Purposes")
+session
+
+#Name
+name1 <- scrape(session) %>%
+  html_nodes("span.a-size-base-plus.a-color-base.a-text-normal") %>%
+  html_text()
+
+name1[1:100]
+
+#Price
+price1 <- scrape(session) %>%
+  html_nodes("span.a-price-fraction") %>%
+  html_text()
+
+price1[1:100]
+
+#Ratings
+ratings1 <- scrape(session) %>%
+  html_nodes("a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+ratings1[1:100]
+```
