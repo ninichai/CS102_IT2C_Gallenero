@@ -1,6 +1,9 @@
 ---
 title: "LabExercise#1_Gallenero"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 date: "2024-02-08"
 ---
 
@@ -9,55 +12,1449 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-install.packages("tidyverse")
 install.packages("dplyr")
 install.packages("rvest")
 install.packages("httr")
 install.packages("polite")
-install.packages("ggplot2")
 install.packages("kableExtra")
 
-library(tidyverse)
 library(dplyr)
 library(rvest)
 library(httr)
 library(polite)
-library(ggplot2)
 library(kableExtra)
 polite::use_manners(save_as = 'polite_scrape.R')
+```
+
+FIRST CATEGORY: MAKEUP
+```{r}
+library(rvest)
+library(polite)
+library(httr)
+
+
+Makeup_products <- data.frame()
+
+
+MakeupLink1 <- "https://www.amazon.com.au/s?k=makeup&rh=n%3A5150071051&ref=nb_sb_noss"
+
+session <- html_session(MakeupLink1,
+                        user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector) {
+  session %>%
+    html_nodes(selector) %>%
+    html_text(trim = TRUE)
+}
+
+scrapedCategory <- "Makeup"
+
+name1 <- scrapeNodes(session, "span.a-size-base-plus.a-color-base.a-text-normal")
+name1 <- name1[1:35]
+
+price1 <- scrapeNodes(session, "span.a-offscreen")
+price1<- price1[1:35]
+
+ratings1 <- scrapeNodes(session, "span.a-icon-alt")
+ratings1 <- ratings1[1:35]
+
+reviews1 <- scrapeNodes(session, "span.a-size-base.s-underline-text")
+reviews1 <- reviews1[1:35]
+
+Makeup_products <- data.frame(category = scrapedCategory,
+                               name = name1,
+                               price = price1,
+                               ratings = ratings1,
+                               no_of_reviews = reviews1)
+
+
+###
+      MakeupLink2 <- "https://www.amazon.com.au/s?k=makeup&i=beauty&rh=n%3A5150071051&page=2&qid=1707484287&ref=sr_pg_2"
+
+    session2 <- html_session(MakeupLink2, user_agent = "For Educational Purpose")
+
+      scrapeNodes <- function(session, selector) {
+  session %>%
+    html_nodes(selector) %>%
+    html_text(trim = TRUE)
+}
+
+scrapedCategory2 <- "Makeup"
+
+name2 <- scrapeNodes(session2, "span.a-size-base-plus.a-color-base.a-text-normal")
+name2 <- name2[1:35]
+
+price2 <- scrapeNodes(session2, "span.a-offscreen")
+price2 <- price2[1:35]
+
+ratings2 <- scrapeNodes(session2, "span.a-icon-alt")
+ratings2 <- ratings2[1:35]
+
+reviews2 <- scrapeNodes(session2, "span.a-size-base.s-underline-text")
+reviews2 <- reviews2[1:35]
+
+Makeup_products <- data.frame(category = scrapedCategory2,
+                               name = name2,
+                               price = price2,
+                               ratings = ratings2,
+                               no_of_reviews = reviews2)
+
+
+
+
+###
+  
+MakeupLink3 <- "https://www.amazon.com.au/s?k=makeup&i=beauty&rh=n%3A5150071051&page=3&qid=1707484298&ref=sr_pg_3"
+
+session3 <- html_session(MakeupLink3, user_agent = "For Educational Purpose")
+
+scrapedCategory3 <- "Makeup"
+
+name3 <- scrapeNodes(session3, "span.a-size-base-plus.a-color-base.a-text-normal")
+name3 <- name3[1:35]
+
+price3 <- scrapeNodes(session3, "span.a-offscreen")
+price3 <- price3[1:35]
+
+ratings3 <- scrapeNodes(session3, "span.a-icon-alt")
+ratings3 <- ratings3[1:35]
+
+reviews3 <- scrapeNodes(session3, "span.a-size-base.s-underline-text")
+reviews3 <- reviews3[1:35]
+
+Makeup_products <- rbind(Makeup_products, data.frame(category = scrapedCategory3,
+                                                       name = name3,
+                                                       price = price3,
+                                                       ratings = ratings3,
+                                                       no_of_reviews = reviews3))
+
+
+
+###
+
+MakeupLink4 <- "https://www.amazon.com.au/s?k=makeup&i=beauty&rh=n%3A5150071051&page=4&qid=1707464624&ref=sr_pg_4"
+
+session4 <- html_session(MakeupLink4, user_agent = "For Educational Purpose")
+
+scrapedCategory4 <- "Makeup"
+
+name4 <- scrapeNodes(session4, "span.a-size-base-plus.a-color-base.a-text-normal")
+name4 <- name4[1:35]
+
+price4 <- scrapeNodes(session4, "span.a-offscreen")
+price4 <- price4[1:35]
+
+ratings4 <- scrapeNodes(session4, "span.a-icon-alt")
+ratings4 <- ratings4[1:35]
+
+reviews4 <- scrapeNodes(session4, "span.a-size-base.s-underline-text")
+reviews4 <- reviews4[1:35]
+
+Makeup_products <- rbind(Makeup_products, data.frame(category = scrapedCategory4,
+                                                       name = name4,
+                                                       price = price4,
+                                                       ratings = ratings4,
+                                                       no_of_reviews = reviews4))
+
+Makeup_products <- Makeup_products[1:100,]
+
+
+Makeup_products
+
+
+```
+
+SECOND CATEGORY: LUGGAGE
+```{r}
+
+library(rvest)
+library(polite)
+library(httr)
+
+
+luggage_products <- data.frame()
+
+
+luggagelink1 <- "https://www.amazon.com.au/s?k=luggage&crid=35Y2D9DG1HBJA&sprefix=luggag%2Caps%2C373&ref=nb_sb_noss_2"
+
+session <- html_session(luggagelink1,
+                        user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector) {
+  session %>%
+    html_nodes(selector) %>%
+    html_text(trim = TRUE)
+}
+
+scrapedCategory <- "Luggage"
+
+name1 <- scrapeNodes(session, "span.a-size-base-plus.a-color-base.a-text-normal")
+name1 <- name1[1:40]
+
+price1 <- scrapeNodes(session, "span.a-offscreen")
+price1 <- price1[1:40]
+
+ratings1 <- scrapeNodes(session, "span.a-icon-alt")
+ratings1 <- ratings1[1:40]
+
+reviews1 <- scrapeNodes(session, "span.a-size-base.s-underline-text")
+reviews1 <- reviews1[1:40]
+
+luggage_products <- data.frame(category = scrapedCategory,
+                               name = name1,
+                               price = price1,
+                               ratings = ratings1,
+                               no_of_reviews = reviews1)
+
+
+###
+      luggagelink2 <- "https://www.amazon.com.au/s?k=luggage&page=2&crid=35Y2D9DG1HBJA&qid=1707455578&sprefix=luggag%2Caps%2C373&ref=sr_pg_2"
+
+    session2 <- html_session(luggagelink2, user_agent = "For Educational Purpose")
+
+      scrapeNodes <- function(session, selector) {
+  session %>%
+    html_nodes(selector) %>%
+    html_text(trim = TRUE)
+}
+
+scrapedCategory2 <- "Luggage"
+
+name2 <- scrapeNodes(session2, "span.a-size-base-plus.a-color-base.a-text-normal")
+name2 <- name2[1:40]
+
+price2 <- scrapeNodes(session2, "span.a-offscreen")
+price2 <- price2[1:40]
+
+ratings2 <- scrapeNodes(session2, "span.a-icon-alt")
+ratings2 <- ratings2[1:40]
+
+reviews2 <- scrapeNodes(session2, "span.a-size-base.s-underline-text")
+reviews2 <- reviews2[1:40]
+
+luggage_products <- rbind(luggage_products, data.frame(category = scrapedCategory2,
+                                                       name = name2,
+                                                       price = price2,
+                                                       ratings = ratings2,
+                                                       no_of_reviews = reviews2))
+
+
+
+
+###
+  
+luggagelink3 <- "https://www.amazon.com.au/s?k=luggage&page=3&crid=35Y2D9DG1HBJA&qid=1707456756&sprefix=luggag%2Caps%2C373&ref=sr_pg_3"
+
+session3 <- html_session(luggagelink3, user_agent = "For Educational Purpose")
+
+scrapedCategory3 <- "Luggage"
+
+name3 <- scrapeNodes(session3, "span.a-size-base-plus.a-color-base.a-text-normal")
+name3 <- name3[1:48]
+
+price3 <- scrapeNodes(session3, "span.a-offscreen")
+price3 <- price3[1:48]
+
+ratings3 <- scrapeNodes(session3, "span.a-icon-alt")
+ratings3 <- ratings3[1:48]
+
+reviews3 <- scrapeNodes(session3, "span.a-size-base.s-underline-text")
+reviews3 <- reviews3[1:48]
+
+luggage_products <- rbind(luggage_products, data.frame(category = scrapedCategory3,
+                                                       name = name3,
+                                                       price = price3,
+                                                       ratings = ratings3,
+                                                       no_of_reviews = reviews3))
+
+
+
+
+###
+
+luggagelink4 <- "https://www.amazon.com.au/s?k=luggage&page=4&crid=35Y2D9DG1HBJA&qid=1707456887&sprefix=luggag%2Caps%2C373&ref=sr_pg_4"
+
+session4 <- html_session(luggagelink4, user_agent = "For Educational Purpose")
+
+scrapedCategory4 <- "Luggage"
+
+name4 <- scrapeNodes(session4, "span.a-size-base-plus.a-color-base.a-text-normal")
+name4 <- name4[1:40]
+
+price4 <- scrapeNodes(session4, "span.a-offscreen")
+price4 <- price4[1:40]
+
+ratings4 <- scrapeNodes(session4, "span.a-icon-alt")
+ratings4 <- ratings4[1:40]
+
+reviews4 <- scrapeNodes(session4, "span.a-size-base.s-underline-text")
+reviews4 <- reviews4[1:40]
+
+luggage_products <- rbind(luggage_products, data.frame(category = scrapedCategory4,
+                                                       name = name4,
+                                                       price = price4,
+                                                       ratings = ratings4,
+                                                       no_of_reviews = reviews4))
+
+luggage_products <- luggage_products[1:100,]
+
+
+luggage_products
 
 ```
 
 ```{r}
-name <- character(100)
-price <- character(100)
-peoples_vote <- character(50)
-episodes <- character(50)
-year <- character(50)
+scraped_products <- rbind(luggage_products, Makeup_products)
+scraped_products
+```
+```
 
-url <-"https://www.amazon.com/s?i=fashion-luggage&bbn=16225017011&rh=n%3A7141123011%2Cn%3A16225017011%2Cn%3A15743251%2Cn%3A15743261&ref=nav_em__nav_desktop_sa_intl_carry_ons_0_2_19_2"
+THE TEN PRODUCTS
+PRODUCT #1
 
-session <- bow(url, user_agent= "Educational Purposes")
-session
+```{r}
 
-#Name
-name1 <- scrape(session) %>%
-  html_nodes("span.a-size-base-plus.a-color-base.a-text-normal") %>%
-  html_text()
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
 
-name1[1:100]
+product1 = data.frame()
+scrapedCategory <- "Makeup"
 
-#Price
-price1 <- scrape(session) %>%
-  html_nodes("span.a-price-fraction") %>%
-  html_text()
 
-price1[1:100]
+  link = "https://www.amazon.com.au/colors-Professional-Makeup-Women-Full/product-reviews/B09QRTWQRC/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
 
-#Ratings
-ratings1 <- scrape(session) %>%
-  html_nodes("a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
-  html_text()
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
 
-ratings1[1:100]
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product1 <- rbind(product1, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+                         
+
+      link2 = "https://www.amazon.com.au/colors-Professional-Makeup-Women-Full/product-reviews/B09QRTWQRC/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product1 <- rbind(product1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+  
+
+      link3 = "https://www.amazon.com.au/colors-Professional-Makeup-Women-Full/product-reviews/B09QRTWQRC/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product1 <- rbind(product1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product1)
+```
+
+PRODUCT #2
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product2 = data.frame()
+scrapedCategory <- "Makeup"
+
+
+#LINK 1
+
+  link = "https://www.amazon.com.au/LOreal-Paris-Match-Concealer-Vanilla/product-reviews/B073QT9968/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product2 <- rbind(product2, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#LINK 2
+
+      link2 = "https://www.amazon.com.au/LOreal-Paris-Match-Concealer-Vanilla/product-reviews/B073QT9968/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product2 <- rbind(product2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#LINK 3
+      
+      link3 = "https://www.amazon.com.au/LOreal-Paris-Match-Concealer-Vanilla/product-reviews/B073QT9968/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product2 <- rbind(product2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product2)
+```
+
+PRODUCT #3
+```{r}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product3 = data.frame()
+scrapedCategory <- "Makeup"
+
+
+#LINK 1
+
+  link = "https://www.amazon.com.au/Maybelline-Lasting-Makeup-Setting-Spray/product-reviews/B07QV2MD3D/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product3 <- rbind(product3, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#LINK 2
+
+      link2 = "https://www.amazon.com.au/Maybelline-Lasting-Makeup-Setting-Spray/product-reviews/B07QV2MD3D/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product3 <- rbind(product3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#LINK 3
+      
+      link3 = "https://www.amazon.com.au/Maybelline-Lasting-Makeup-Setting-Spray/product-reviews/B07QV2MD3D/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product3 <- rbind(product3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product3)
+```
+
+PRODUCT#4
+```{r}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product4 = data.frame()
+scrapedCategory <- "Makeup"
+
+
+#LINK 1
+
+  link = "https://www.amazon.com.au/1000-HOUR-Eyelash-Brown-Black/product-reviews/B00FAANCUK/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product4 <- rbind(product4, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#LINK 2
+
+      link2 = "https://amazon.com.au/1000-HOUR-Eyelash-Brown-Black/product-reviews/B00FAANCUK/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product4 <- rbind(product4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#LINK 3
+      
+      link3 = "https://www.amazon.com.au/1000-HOUR-Eyelash-Brown-Black/product-reviews/B00FAANCUK/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product4 <- rbind(product4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product4)
+```
+
+PRODUCT#5
+```{r}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product5 = data.frame()
+scrapedCategory <- "Makeup"
+
+
+#LINK 1
+
+  link = "https://www.amazon.com.au/0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product5 <- rbind(product5, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#LINK 2
+
+      link2 = "https://www.amazon.com.au/0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product5 <- rbind(product5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#LINK 3
+      
+      link3 = "https://www.amazon.com.au/0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product5 <- rbind(product5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product5)
+```
+
+PRODUCT #6
+```{r}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product6 = data.frame()
+scrapedCategory <- "Luggage"
+
+
+#LINK 1
+
+  link = "https://www.amazon.com.au/SHOWKOO-Luggage-Expandable-Suitcase-set-Orange/product-reviews/B09NXQ2F4R/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product6 <- rbind(product6, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#LINK 2
+
+      link2 = "https://www.amazon.com.au/0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product6 <- rbind(product6, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#LINK 3
+      
+      link3 = "https://www.amazon.com.au/0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product6 <- rbind(product6, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product6)
+```
+
+PRODUCT #7
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product7 = data.frame()
+scrapedCategory <- "Luggage"
+
+
+# LINK 1
+
+  link = "https://www.amazon.com.au/Amazon-Basics-Hardside-Hard-Shell-Suitcase/product-reviews/B071VG5N9D/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product7 <- rbind(product7, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+# LINK 2
+
+      link2 = "https://www.amazon.com.au/Amazon-Basics-Hardside-Hard-Shell-Suitcase/product-reviews/B071VG5N9D/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product7 <- rbind(product7, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+# LINK 3
+      
+      link3 = "https://www.amazon.com.au/Amazon-Basics-Hardside-Hard-Shell-Suitcase/product-reviews/B071VG5N9D/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product7 <- rbind(product7, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product7)
+
+```
+
+PRODUCT #8
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product8 = data.frame()
+scrapedCategory <- "Luggage"
+
+
+# LINK 1
+
+  link = "https://www.amazon.com.au/Rockland-Melbourne-Expandable-Carry-Charcoal/product-reviews/B015DC201G/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product8 <- rbind(product8, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+## LINK2
+
+      link2 = "https://www.amazon.com.au/Rockland-Melbourne-Expandable-Carry-Charcoal/product-reviews/B015DC201G/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product8 <- rbind(product8, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+#LINK 3     
+      
+      link3 = "https://www.amazon.com.au/Rockland-Melbourne-Expandable-Carry-Charcoal/product-reviews/B015DC201G/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product8 <- rbind(product8, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product8)
+```
+
+PRODUCT #9
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product9 = data.frame()
+scrapedCategory <- "Luggage"
+
+
+#
+
+  link = "https://www.amazon.com.au/Samsonite-Oc2lite-Suitcase/product-reviews/B0CR3WKRJ1/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product9 <- rbind(product9, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+#
+
+      link2 = "https://www.amazon.com.au/Samsonite-Oc2lite-Suitcase/product-reviews/B0CR3WKRJ1/ref=cm_cr_getr_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product9 <- rbind(product9, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+      
+#
+      
+      link3 = "https://www.amazon.com.au/Samsonite-Oc2lite-Suitcase/product-reviews/B0CR3WKRJ1/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product9 <- rbind(product9, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product9)
+```
+
+PRODUCT #10
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+product10 = data.frame()
+scrapedCategory <- "Luggage"
+
+
+ #LINK1
+
+  link = "https://www.amazon.com.au/American-Tourister-Airconic-Opening-Suitcase/product-reviews/B0CR3RZ1SX/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+      }
+          
+      scrapedprodName <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+    
+      
+      prodReviewer1 <- scrapeNodes("span.a-profile-name")
+      prodReviewer1 <- prodReviewer1[1:10]
+
+      
+      prodReview1 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview1 <- prodReview1[1:10]
+
+      
+      prodDate1 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate1 <- prodDate1[1:10]
+
+      
+      prodRating1 <- scrapeNodes("span.a-icon-alt")
+      prodRating1 <- prodRating1[1:10]
+
+      
+      product10 <- rbind(product10, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = prodReviewer1,
+                          review = prodReview1,
+                          date = prodDate1,
+                         ratings = prodRating1))
+ #LINK2
+
+      link2 = "https://www.amazon.com.au/American-Tourister-Airconic-Opening-Suitcase/product-reviews/B0CR3RZ1SX/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+  
+  sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+      prodReviewer2 <- scrapeNodes("span.a-profile-name")
+      prodReviewer2 <- prodReviewer2[1:10]
+
+      
+      prodReview2 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview2 <- prodReview2[1:10]
+
+      
+      prodDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate2 <- prodDate2[1:10]
+
+      
+      prodRating2 <- scrapeNodes("span.a-icon-alt")
+      prodRating2 <- prodRating2[1:10]
+
+      
+      product10 <- rbind(product10, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer2,
+                          review = prodReview2,
+                          date = prodDate2,
+                         ratings = prodRating2))
+      
+#
+      
+      link3 = "https://www.amazon.com.au/American-Tourister-Airconic-Opening-Suitcase/product-reviews/B0CR3RZ1SX/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+  
+  sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+      prodReviewer3 <- scrapeNodes("span.a-profile-name")
+      prodReviewer3 <- prodReviewer3[1:10]
+
+      
+      prodReview3 <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+      prodReview3 <- prodReview3[1:10]
+
+      
+      prodDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+      prodDate3 <- prodDate3[1:10]
+
+      
+      prodRating3 <- scrapeNodes("span.a-icon-alt")
+      prodRating3 <- prodRating3[1:10]
+
+      
+      product10 <- rbind(product10, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = prodReviewer3,
+                          review = prodReview3,
+                          date = prodDate3,
+                         ratings = prodRating3))
+      
+print(product10)
+```
+
+
+```{r}
+All_Reviews <- rbind(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10)
+
+print(All_Reviews)
 ```
