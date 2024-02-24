@@ -20,9 +20,9 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
   prod_df <- data.frame()
 
   for (page in pages) {
-    link <- paste0("https://www.amazon.com.au/",url_stub,"/ref=cm_cr_arp_d_paging_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+    link <- paste0("https://www.amazon.co.uk/",url_stub,"/ref=cm_cr_arp_d_paging_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
     session <- bow(link, user_agent = "Educational Purpose")
-
+    
     scrapeNodes <- function(selector) {
       scrape(session) %>%
         html_nodes(selector) %>%
@@ -36,7 +36,7 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
     scrape_Rating <- scrapeNodes("span.a-icon-alt")[1:10]
     scrape_Type <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
 
-    product_df <- rbind(prod_df, data.frame(
+    prod_df <- rbind(prod_df, data.frame(
       prod_name = product_name,
       title = scrape_Title,
       reviewer = scrape_Reviewer,
@@ -53,28 +53,72 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
 }
 ```
 
-Scraping products 
+Scraping products 1-10
+CATEGORY: MAKEUP
 ```{r}
     
 product1 <- Amazon_Reviews_Scrape(
-  "LUXAZA-Eyeshadow-Brightener-Crease-proof-Waterproof",
-  "LUXAZA-Eyeshadow-Brightener-Crease-proof-Waterproof/product-reviews/B0BFF9TY46",
-  3:7
+  "Neutrogena Cleansing Towelette Waterproof Individually",
+  "Neutrogena Cleansing Towelette Waterproof Individually/product-reviews/B07GKVBQDG",
+  6:10
 )
 
+product2 <- Amazon_Reviews_Scrape(
+  "Neutrogena Cleansing Towelettes Alcohol Free Waterproof",
+  "Neutrogena Cleansing Towelettes Alcohol Free Waterproof/product-reviews/B084K5HNCB/",
+  6:10
+)
 
-product2 <- Amazon_Reviews_Scrape(  
-  "Bioderma-Sensibio-Soothing-Cleansing-Sensitive",
-  "Bioderma-Sensibio-Soothing-Cleansing-Sensitive/product-reviews/B07YT6F4ZK",
+product3 <- Amazon_Reviews_Scrape(
+  "UNIFULL Professional eyeshadow lipstick concealer",
+  "UNIFULL Professional eyeshadow lipstick concealer/product-reviews/B0BGXLGBVZ/",
+  6:10
+)
+
+product4 <- Amazon_Reviews_Scrape(
+  "Maybelline New-York Treatment Multi-Use",
+  "Maybelline New-York Treatment Multi-Use/product-reviews/B004Y9GTOO/",
   6:10
 )
 
 
-product3 <- Amazon_Reviews_Scrape(
-  "Frankie-Rose-Cosmetics-SG_B00T56C54O_US-Addiction",
-  "Frankie-Rose-Cosmetics-SG_B00T56C54O_US-Addiction/product-reviews/B00T56C54O",
-  3:7
+product5 <- Amazon_Reviews_Scrape(
+  "BS MALL Brushes Synthetic Foundation Concealers",
+  "BS MALL Brushes Synthetic Foundation Concealers/product-reviews/B07MH1KHJ2/",
+  6:10
+)
+
+product6 <- Amazon_Reviews_Scrape(
+  "Makeup Brushes Foundation Brush Eyeshadow",
+  "Makeup Brushes Foundation Brush Eyeshadow/product-reviews/B094NLR225",
+  6:10
+)
+
+product7 <- Amazon_Reviews_Scrape(
+  "Magnification Rotation Portable Trifold Cosmetic",
+  "Magnification Rotation Portable Trifold Cosmetic/product-reviews/B08FD6SJ3N/",
+  6:10
+)
+
+product8 <- Amazon_Reviews_Scrape(
+  "Infitrans Magnification Adjustable Rotation Portable",
+  "Infitrans Magnification Adjustable Rotation Portable/product-reviews/B087PWNS9C/",
+  6:10
+)
+
+product9 <- Amazon_Reviews_Scrape(
+  "Paris Makeup True Natural Glow Illuminator Highlighter Day Radiant Glow",
+  "Paris Makeup True Natural Glow Illuminator Highlighter Day Radiant Glow/dp/B074PTZCNX/",
+  6:10
+)
+
+product10 <- Amazon_Reviews_Scrape(
+  "Electric Cleanser Cleaning Stocking Stuffers",
+  "Electric Cleanser Cleaning Stocking Stuffers/product-reviews/B0CQ4WS2CP/",
+  6:10
 )
 
 ```
 
+Scraping products 11-20
+CATEGORY: Makeup
