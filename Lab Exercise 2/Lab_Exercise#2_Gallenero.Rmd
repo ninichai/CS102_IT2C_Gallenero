@@ -1,7 +1,7 @@
----
 title: "Lab_Exercise#2_Gallenero"
 date: "2024-02-21"
 output:
+  pdf_document: default
   html_document: default
 ---
 
@@ -20,7 +20,7 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
   prod_df <- data.frame()
 
   for (page in pages) {
-    link <- paste0("https://www.amazon.co.uk/",url_stub,"/ref=cm_cr_arp_d_paging_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+    link <- paste0("https://www.amazon.com.au/",url_stub,"/ref=cm_cr_arp_d_paging_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
     session <- bow(link, user_agent = "Educational Purpose")
     
     scrapeNodes <- function(selector) {
@@ -53,69 +53,50 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
 }
 ```
 
+
 Scraping products 1-10
 CATEGORY: MAKEUP
 ```{r}
     
 product1 <- Amazon_Reviews_Scrape(
-  "Neutrogena Cleansing Towelette Waterproof Individually",
-  "Neutrogena Cleansing Towelette Waterproof Individually/product-reviews/B07GKVBQDG",
+  "Maybelline-Instant-Rewind-Circles-Concealer",
+  "Maybelline-Instant-Rewind-Circles-Concealer/product-reviews/B004Y9GTYE",
   6:10
 )
 
 product2 <- Amazon_Reviews_Scrape(
-  "Neutrogena Cleansing Towelettes Alcohol Free Waterproof",
-  "Neutrogena Cleansing Towelettes Alcohol Free Waterproof/product-reviews/B084K5HNCB/",
+  "Real-Technique-Miracle-Complexion-Sponge",
+  "Real-Technique-Miracle-Complexion-Sponge/product-reviews/B01JINOV5E",
   6:10
 )
 
 product3 <- Amazon_Reviews_Scrape(
-  "UNIFULL Professional eyeshadow lipstick concealer",
-  "UNIFULL Professional eyeshadow lipstick concealer/product-reviews/B0BGXLGBVZ/",
+  "0ml-Warm-Neutrals-PROFESSIONAL-Ultimate",
+  "0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2",
   6:10
 )
 
 product4 <- Amazon_Reviews_Scrape(
-  "Maybelline New-York Treatment Multi-Use",
-  "Maybelline New-York Treatment Multi-Use/product-reviews/B004Y9GTOO/",
+  "SHEGLAM-Liquid-Makeup-Cheeks-Finish",
+  "SHEGLAM-Liquid-Makeup-Cheeks-Finish/product-reviews/B0BHFBBH25",
   6:10
 )
 
-
 product5 <- Amazon_Reviews_Scrape(
-  "BS MALL Brushes Synthetic Foundation Concealers",
-  "BS MALL Brushes Synthetic Foundation Concealers/product-reviews/B07MH1KHJ2/",
+  "l-f-Monochromatic-Multi-Cheeks-Dazzling",
+  "l-f-Monochromatic-Multi-Cheeks-Dazzling/product-reviews/B088W7L534",
   6:10
 )
 
 product6 <- Amazon_Reviews_Scrape(
-  "Makeup Brushes Foundation Brush Eyeshadow",
-  "Makeup Brushes Foundation Brush Eyeshadow/product-reviews/B094NLR225",
+  "Paris-Makeup-True-Natural-Glow-Illuminator-Highlighter-Day-Radiant-Glow",
+  "Paris-Makeup-True-Natural-Glow-Illuminator-Highlighter-Day-Radiant-Glow/product-reviews/B074PTZCNX",
   6:10
 )
 
 product7 <- Amazon_Reviews_Scrape(
-  "Magnification Rotation Portable Trifold Cosmetic",
-  "Magnification Rotation Portable Trifold Cosmetic/product-reviews/B08FD6SJ3N/",
+  "Maybelline-Volumizing-Buildable-Lengthening-Multiplying",
+  "Maybelline-Volumizing-Buildable-Lengthening-Multiplying/product-reviews/B08H3JPH74",
   6:10
 )
-
-product8 <- Amazon_Reviews_Scrape(
-  "Infitrans Magnification Adjustable Rotation Portable",
-  "Infitrans Magnification Adjustable Rotation Portable/product-reviews/B087PWNS9C/",
-  6:10
-)
-
-product9 <- Amazon_Reviews_Scrape(
-  "Paris Makeup True Natural Glow Illuminator Highlighter Day Radiant Glow",
-  "Paris Makeup True Natural Glow Illuminator Highlighter Day Radiant Glow/dp/B074PTZCNX/",
-  6:10
-)
-
-product10 <- Amazon_Reviews_Scrape(
-  "Electric Cleanser Cleaning Stocking Stuffers",
-  "Electric Cleanser Cleaning Stocking Stuffers/product-reviews/B0CQ4WS2CP/",
-  6:10
-)
-
 ```
