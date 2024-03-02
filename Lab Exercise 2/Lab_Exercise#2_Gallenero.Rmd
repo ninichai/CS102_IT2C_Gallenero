@@ -1,8 +1,9 @@
+---
 title: "Lab_Exercise#2_Gallenero"
 date: "2024-02-21"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -54,8 +55,9 @@ Amazon_Reviews_Scrape <- function(product_name, url_stub, pages) {
 ```
 
 
-Scraping products 1-10
 CATEGORY: MAKEUP
+PRODUCT 1
+
 ```{r}
     
 product1 <- Amazon_Reviews_Scrape(
@@ -63,40 +65,452 @@ product1 <- Amazon_Reviews_Scrape(
   "Maybelline-Instant-Rewind-Circles-Concealer/product-reviews/B004Y9GTYE",
   6:10
 )
-
+```
+PRODUCT 2
+```{r}
 product2 <- Amazon_Reviews_Scrape(
   "Real-Technique-Miracle-Complexion-Sponge",
   "Real-Technique-Miracle-Complexion-Sponge/product-reviews/B01JINOV5E",
   6:10
 )
+```
+PRODUCT 3
 
+```{r}
 product3 <- Amazon_Reviews_Scrape(
-  "0ml-Warm-Neutrals-PROFESSIONAL-Ultimate",
-  "0ml-Warm-Neutrals-PROFESSIONAL-Ultimate/product-reviews/B01IW02HX2",
+  "Pieces-Powder-Makeup-Velour-Triangle",
+  "Pieces-Powder-Makeup-Velour-Triangle/product-reviews/B09V5RDKP4",
   6:10
 )
+```
 
+PRODUCT 4
+```{r}
 product4 <- Amazon_Reviews_Scrape(
   "SHEGLAM-Liquid-Makeup-Cheeks-Finish",
   "SHEGLAM-Liquid-Makeup-Cheeks-Finish/product-reviews/B0BHFBBH25",
   6:10
 )
-
+```
+PRODUCT 5
+```{r}
 product5 <- Amazon_Reviews_Scrape(
   "l-f-Monochromatic-Multi-Cheeks-Dazzling",
   "l-f-Monochromatic-Multi-Cheeks-Dazzling/product-reviews/B088W7L534",
   6:10
 )
-
+```
+PRODUCT 6
+```{r}
 product6 <- Amazon_Reviews_Scrape(
   "Paris-Makeup-True-Natural-Glow-Illuminator-Highlighter-Day-Radiant-Glow",
   "Paris-Makeup-True-Natural-Glow-Illuminator-Highlighter-Day-Radiant-Glow/product-reviews/B074PTZCNX",
   6:10
 )
-
+```
+PRODUCT 7
+```{r}
 product7 <- Amazon_Reviews_Scrape(
   "Maybelline-Volumizing-Buildable-Lengthening-Multiplying",
   "Maybelline-Volumizing-Buildable-Lengthening-Multiplying/product-reviews/B08H3JPH74",
   6:10
 )
 ```
+PRODUCT 8
+```{r}
+product8 <- Amazon_Reviews_Scrape(
+  "NYX-Professional-Makeup-Shine-Colour",
+  "NYX-Professional-Makeup-Shine-Colour/product-reviews/B08TJR1YS6/ref=sr_1_48?crid=1NA9701A27OAR&dib",
+  6:10
+)
+```
+PRODUCT 9
+```{r}
+product9 <- Amazon_Reviews_Scrape(
+  "l-f-Poreless-Primer-Fluid-Ounce",
+  "l-f-Poreless-Primer-Fluid-Ounce/product-reviews/B00JZ4V6V4",
+  6:10
+)
+```
+PRODUCT 10
+```{r}
+product10 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Matte-Spiced-Caller",
+  "Maybelline-SuperStay-Matte-Spiced-Caller/product-reviews/B08H3QV41W",
+  6:10
+)
+```
+
+
+PRODUCT 11
+```{r}
+product11 <- Amazon_Reviews_Scrape(
+  "All-One-Makeup-Gift-Kit",
+  "All-One-Makeup-Gift-Kit/product-reviews/B081YZ4CFZ",
+  6:10
+)
+```
+
+PRODUCT 12
+```{r}
+product12 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Matte-Spiced-Caller",
+  "Maybelline-SuperStay-Matte-Spiced-Caller/product-reviews/B08H3QV41W",
+  6:10
+)
+```
+PRODUCT 13
+```{r}
+product13 <- Amazon_Reviews_Scrape(
+  "LOreal-Paris-Infallible-Automatic-Intense",
+  "LOreal-Paris-Infallible-Automatic-Intense/product-reviews/B09NQGDDGF",
+  6:10
+)
+```
+
+PRODUCT 14
+```{r}
+product14 <- Amazon_Reviews_Scrape(
+  "Revolution-Loose-Baking-Powder-Banana",
+  "Revolution-Loose-Baking-Powder-Banana/product-reviews/B081X3KTGW",
+  6:10
+)
+```
+
+PRODUCT 15
+```{r}
+product15 <- Amazon_Reviews_Scrape(
+  "KIMUSE-Contour-1Contouring-Highlight",
+  "KIMUSE-Contour-1Contouring-Highlight-W04-FAIR/product-reviews/B0BJ1VYD8Q",
+  6:10
+)
+```
+
+PRODUCT 16
+```{r}
+product16 <- Amazon_Reviews_Scrape(
+  "Conceal-Correct-Contour-Palette-3CP01",
+  "Conceal-Correct-Contour-Palette-3CP01/product-reviews/B00OU154OW",
+  3:7
+)
+```
+
+PRODUCT 17
+```{r}
+product17 <- Amazon_Reviews_Scrape(
+  "Lipstick-FirstFly-Nutritious-Moisturizer-Temperature",
+  "Lipstick-FirstFly-Nutritious-Moisturizer-Temperature/product-reviews/B078VR8SHC",
+  6:10
+)
+```
+
+PRODUCT 18
+```{r}
+product18 <- Amazon_Reviews_Scrape(
+  "LOréal-Paris-Telescopic-Mascara-Black",
+  "LOréal-Paris-Telescopic-Mascara-Black/product-reviews/B07QXG6ZPQ",
+  6:10
+)
+```
+
+PRODUCT 19
+```{r}
+product19 <- Amazon_Reviews_Scrape(
+  "Lipstick-Plumper-Waterproof-Pigmented-Halloween",
+  "Lipstick-Plumper-Waterproof-Pigmented-Halloween/product-reviews/B089FBPMC6",
+  6:10
+)
+```
+
+PRODUCT 20
+```{r}
+product20 <- Amazon_Reviews_Scrape(
+  "KIMUSE-Makeup-Cheeks-Contour-Highlighter",
+  "KIMUSE-Makeup-Cheeks-Contour-Highlighter/product-reviews/B09JSWZDX7",
+  3:7
+)
+```
+
+PRODUCT 21
+```{r}
+product21 <- Amazon_Reviews_Scrape(
+  "Small-Makeup-Bag-Cosmetic-blue",
+  "Small-Makeup-Bag-Cosmetic-blue/product-reviews/B0987RQ893",
+  1:5
+)
+```
+
+PRODUCT 22
+```{r}
+product22 <- Amazon_Reviews_Scrape(
+  "Rimmel-London-Brow-Eyebrow-Sculpting",
+  "Rimmel-London-Brow-Eyebrow-Sculpting/product-reviews/B00MGK9Q9S",
+  1:5
+)
+```
+
+PRODUCT 23
+```{r}
+product23 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Matte-Spiced-Caller",
+  "Maybelline-SuperStay-Matte-Spiced-Caller/product-reviews/B08H3QV41W",
+  1:5
+)
+```
+
+PRODUCT 24
+```{r}
+product24 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Crayon-Lipstick-Adventure",
+  "Maybelline-SuperStay-Crayon-Lipstick-Adventure/product-reviews/B07PDMYBYF",
+  1:5
+)
+```
+
+PRODUCT 25
+```{r}
+product25 <- Amazon_Reviews_Scrape(
+  "NYX-Professional-Makeup-Brightening-Primer",
+  "NYX-Professional-Makeup-Brightening-Primer/product-reviews/B08MRF16MK",
+  2:6
+)
+```
+
+PRODUCT 26
+```{r}
+product26 <- Amazon_Reviews_Scrape(
+  "NEJLSD-Eyeliner-Eyeshadow-Blending-Foundation",
+  "NEJLSD-Eyeliner-Eyeshadow-Blending-Foundation/product-reviews/B07FFMGYFY",
+  3:7
+)
+```
+
+PRODUCT 27
+```{r}
+product27 <- Amazon_Reviews_Scrape(
+  "NYX-Professional-Makeup-Ultimate",
+  "NYX-Professional-Makeup-Ultimate-K0597500/product-reviews/B0969LRCLC",
+  3:7
+)
+```
+
+PRODUCT 28
+```{r}
+product28 <- Amazon_Reviews_Scrape(
+  "NYX-PROFESSIONAL-MAKEUP-Peekaboo-Neutral",
+  "NYX-PROFESSIONAL-MAKEUP-Peekaboo-Neutral/product-reviews/B07B16HMSM",
+  3:7
+)
+```
+
+```{r}
+product29 <- Amazon_Reviews_Scrape(
+  "SFXULIX-Capacity-Travel-Cosmetic-Bag",
+  "SFXULIX-Capacity-Travel-Cosmetic-Bag/product-reviews/B0BMWV2RK6",
+  1:5
+)
+```
+
+PRODUCT 30
+```{r}
+product30 <- Amazon_Reviews_Scrape(
+  "Upgraded-Magnifying-Magnification-Application-Blackhead",
+  "Upgraded-Magnifying-Magnification-Application-Blackhead/product-reviews/B0915FFTS7",
+  1:5
+)
+```
+
+PRODUCT 31
+```{r}
+product31 <- Amazon_Reviews_Scrape(
+  "Laptop-Makeup-Make-Up-Palette",
+  "Laptop-Makeup-Make-Up-Palette/product-reviews/B075Z4CHHD",
+  3:7
+)
+```
+
+PRODUCT 32
+```{r}
+product32 <- Amazon_Reviews_Scrape(
+  "NYX-Professional-Makeup-Setting-Lasting",
+  "NYX-Professional-Makeup-Setting-Lasting/product-reviews/B00B4YVU4G",
+  2:6
+)
+```
+
+PRODUCT 33
+```{r}
+product33 <- Amazon_Reviews_Scrape(
+  "Cleaner-Super-Fast-Electric-Machine-Automatic",
+  "Cleaner-Super-Fast-Electric-Machine-Automatic/product-reviews/B083LX58T8",
+  3:7
+)
+```
+
+PRODUCT 34
+```{r}
+product34 <- Amazon_Reviews_Scrape(
+  "Cosmetic-Toiletry-Organizer-Portable-Adjustable",
+  "Cosmetic-Toiletry-Organizer-Portable-Adjustable/product-reviews/B0785P1VP9",
+  1:5
+)
+```
+
+PRODUCT 35
+```{r}
+product35 <- Amazon_Reviews_Scrape(
+  "Physicians-Formula-Murumuru-Bronzer-Sunkissed",
+  "Physicians-Formula-Murumuru-Bronzer-Sunkissed/product-reviews/B077QCKV43",
+  2:6
+)
+```
+
+PRODUCT 36
+```{r}
+product36 <- Amazon_Reviews_Scrape(
+  "FOCALLURE-Highlighter-Cruelty-Free-Illuminator-Highlighters",
+  "FOCALLURE-Highlighter-Cruelty-Free-Illuminator-Highlighters/product-reviews/B096S7DZ78",
+  3:7
+)
+```
+
+PRODUCT 37
+```{r}
+product37 <- Amazon_Reviews_Scrape(
+  "MAANGE-Foundation-Eyeshadow-Blending-Concealers",
+  "MAANGE-Foundation-Eyeshadow-Blending-Concealers/product-reviews/B0C2C2S9LG",
+  3:7
+)
+```
+
+PRODUCT 38
+```{r}
+product38 <- Amazon_Reviews_Scrape(
+  "NYX PROFESSIONAL-MAKEUP-Wonder-Universal",
+  "NYX-PROFESSIONAL-MAKEUP-Wonder-Universal/product-reviews/B00TKJIF5O",
+  1:5
+)
+```
+
+PRODUCT 39
+```{r}
+product39 <- Amazon_Reviews_Scrape(
+  "MAANGE-Professional-Foundation-Eyeshadow-Blackgold",
+  "MAANGE-Professional-Foundation-Eyeshadow-Blackgold/product-reviews/B0991RTYH3",
+  1:5
+)
+```
+
+PRODUCT 40
+```{r}
+product40 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Matte-Spiced-Caller",
+  "Maybelline-SuperStay-Matte-Spiced-Caller/product-reviews/B08H3QV41W",
+  3:7
+)
+
+```
+
+PRODUCT 41
+```{r}
+product41 <- Amazon_Reviews_Scrape(
+  "Maybelline-SuperStay-Crayon-Lipstick-Adventure",
+  "Maybelline-SuperStay-Crayon-Lipstick-Adventure/product-reviews/B07PDMYBYF",
+  2:6
+)
+```
+
+PRODUCT 42
+```{r}
+product42 <- Amazon_Reviews_Scrape(
+  "BS-MALL-Brushes-Synthetic-Foundation-Concealers",
+  "BS-MALL-Brushes-Synthetic-Foundation-Concealers/product-reviews/B01LZ3RLPC",
+  3:7
+)
+```
+
+PRODUCT 43
+```{r}
+product43 <- Amazon_Reviews_Scrape(
+  "Real-Technique-Expert-Concealer-Brush",
+  "Real-Technique-Expert-Concealer-Brush/product-reviews/B01N0L42FZ",
+  2:6
+)
+```
+
+PRODUCT 44
+```{r}
+product44 <- Amazon_Reviews_Scrape(
+  "Senbowe-Upgraded-Electric-Cosmetic-Automatic",
+  "Senbowe-Upgraded-Electric-Cosmetic-Automatic/product-reviews/B0855DXKL8",
+  3:7
+)
+```
+
+PRODUCT 45
+```{r}
+product45 <- Amazon_Reviews_Scrape(
+  "FERYES-Silicon-Portable-Cosmetic-Organizer",
+  "FERYES-Silicon-Portable-Cosmetic-Organizer/product-reviews/B0B14V6F8T",
+  3:7
+)
+```
+
+PRODUCT 46
+```{r}
+product46 <- Amazon_Reviews_Scrape(
+  "MAANGE-Professional-Foundation-Eyeshadow-Blackgold",
+  "MAANGE-Professional-Foundation-Eyeshadow-Blackgold/product-reviews/B0991RTYH3",
+  1:5
+)
+```
+
+PRODUCT 47
+```{r}
+product47 <- Amazon_Reviews_Scrape(
+  "Fancii-Magnifying-Flexible-Gooseneck-Daylight",
+  "Fancii-Magnifying-Flexible-Gooseneck-Daylight/product-reviews/B07WHKZSK8",
+  2:6
+)
+```
+
+PRODUCT 48
+```{r}
+product48 <- Amazon_Reviews_Scrape(
+  "Makeup-Cosmetic-Hand-Portable-Toiletry-Organizer",
+  "Makeup-Cosmetic-Hand-Portable-Toiletry-Organizer/product-reviews/B0981V4R1B",
+  3:7
+)
+```
+PRODUCT 49
+```{r}
+product49 <- Amazon_Reviews_Scrape(
+  "Jessup-Professional-Foundation-eyelashes-Natural-Synthetic",
+  "Jessup-Professional-Foundation-eyelashes-Natural-Synthetic/product-reviews/B076DTSQQL",
+  2:6
+)
+```
+
+PRODUCT 50
+```{r}
+product50 <- Amazon_Reviews_Scrape(
+  "Concealer-Foundation-Applicator-maquillaje-profesional",
+  "Concealer-Foundation-Applicator-maquillaje-profesional/product-reviews/B0BWVXMWF5",
+  3:7
+)
+```
+
+```{r}
+
+All50_Prod_Reviews = data.frame();
+
+All50_Prod_Reviews  <- rbind(All50_Prod_Reviews, product1, product2, product3, product4, product5, product6, product7, product8, product9, product10,product11, product12, product13, product14, product15, product16, product16, product18, product19, product20, product21, product22, product23, product24, product25, product26, product27, product28, product29, product30, product31, product32, product33, product34, product35, product36, product37, product38, product39, product40, product41, product42, product43, product44, product45, product46, product47, product48, product49, product50)
+
+#View(all_Products)
+```
+
+```{r}
+write.csv(All50_Prod_Reviews, "All_50Product_Reviews")
+
+```
+
