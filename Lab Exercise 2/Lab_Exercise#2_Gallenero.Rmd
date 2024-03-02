@@ -515,6 +515,6 @@ All50_Prod_Reviews  <- rbind(All50_Prod_Reviews, product1, product2, product3, p
 
 CSV
 ```{r}
-write.csv(All50_Prod_Reviews, "All_50Product_Reviews")
+write.csv(All50_Prod_Reviews, "All_50Product_Reviews.csv")
 
 ```
