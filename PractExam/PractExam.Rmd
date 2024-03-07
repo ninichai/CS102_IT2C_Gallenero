@@ -42,6 +42,7 @@ numeric_or_integer_cols
 
 
 #B. Load the example.File.txt
+
 ```{r}
 #Read the complete file using readLines.
 lines <- readLines("exampleFile.txt")
