@@ -166,11 +166,6 @@ either numeric or integer.
 rather than theuser-level class. Derive from the following code and
 error message what theunderlying type.
 
-for (i in 1:ncol(numeric\_or\_integer\_columns)) \{ if
-(!is.integer(numeric\_or\_integer\_columns{[}, i{]})) \{
-numeric\_or\_integer\_columns{[}, i{]} \textless-
-as.integer(numeric\_or\_integer\_columns{[}, i{]}) \} \}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#4 ERROR MESSAGE}
@@ -178,7 +173,7 @@ as.integer(numeric\_or\_integer\_columns{[}, i{]}) \} \}
 \end{Highlighting}
 \end{Shaded}
 
-\#B. Load the example.File.txt \#B
+\#B. Load the example.File.txt
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -231,8 +226,13 @@ as.integer(numeric\_or\_integer\_columns{[}, i{]}) \} \}
 ## [1] "21 May 2013"
 \end{verbatim}
 
-\#a. Split the character vectors in the vector containing data lines by
-semicolon (;) using strsplit.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Split the character vectors in the vector containing data lines by
+  semicolon (;) using strsplit.
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -255,13 +255,19 @@ semicolon (;) using strsplit.
 ## [1] "fem." "64"   "62.8"
 \end{verbatim}
 
-\#Find the maximum number of fields retrieved by split. Append rows that
-are shorter with NA's.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Find the maximum number of fields retrieved by split. Append rows that
+  are shorter with NA's.
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{max\_fields }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(split\_data, length))}
-\NormalTok{max\_fields}
+\NormalTok{maximum\_fields }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(split\_data, length))}
+\NormalTok{maximum\_fields}
 \end{Highlighting}
 \end{Shaded}
 
@@ -271,7 +277,7 @@ are shorter with NA's.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{split\_data }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(split\_data, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{c}\NormalTok{(x, }\FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, max\_fields }\SpecialCharTok{{-}} \FunctionTok{length}\NormalTok{(x))))}
+\NormalTok{split\_data }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(split\_data, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{c}\NormalTok{(x, }\FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, maximum\_fields }\SpecialCharTok{{-}} \FunctionTok{length}\NormalTok{(x))))}
 \NormalTok{split\_data}
 \end{Highlighting}
 \end{Shaded}
@@ -290,11 +296,17 @@ are shorter with NA's.
 ## [1] "fem." "64"   "62.8"
 \end{verbatim}
 
-\#Use unlist and matrix to transform the data to row-column format.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Use unlist and matrix to transform the data to row-column format.
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{unlist}\NormalTok{(split\_data), }\AttributeTok{ncol =}\NormalTok{ max\_fields, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{data\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{unlist}\NormalTok{(split\_data), }\AttributeTok{ncol =}\NormalTok{ maximum\_fields, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{data\_matrix}
 \end{Highlighting}
 \end{Shaded}
@@ -307,13 +319,19 @@ are shorter with NA's.
 ## [4,] "fem."   "64" "62.8"
 \end{verbatim}
 
-\#From comment lines 2-4, extract the names of the fields. Set these as
-colnames for the matrix you just created.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  From comment lines 2-4, extract the names of the fields. Set these as
+  colnames for the matrix you just created.
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fieldNames }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"\^{}// Field [0{-}9]+: "}\NormalTok{, }\StringTok{""}\NormalTok{, comments[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}
-\NormalTok{fieldNames}
+\NormalTok{field\_Names }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"\^{}// Field [0{-}9]+: "}\NormalTok{, }\StringTok{""}\NormalTok{, comments[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}
+\NormalTok{field\_Names}
 \end{Highlighting}
 \end{Shaded}
 
@@ -323,7 +341,7 @@ colnames for the matrix you just created.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{colnames}\NormalTok{(data\_matrix) }\OtherTok{\textless{}{-}}\NormalTok{ fieldNames}
+\FunctionTok{colnames}\NormalTok{(data\_matrix) }\OtherTok{\textless{}{-}}\NormalTok{ field\_Names}
 \FunctionTok{colnames}\NormalTok{(data\_matrix)}
 \end{Highlighting}
 \end{Shaded}

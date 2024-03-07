@@ -1,8 +1,8 @@
 ---
 title: "Pract_Exam_Gallenero"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 date: "2024-03-06"
 ---
 
@@ -34,11 +34,7 @@ numeric_or_integer_cols
 
 #Error messages in R sometimes report the underlying type of an object rather than theuser-level class. Derive from the following code and error message what theunderlying type.
 
-for (i in 1:ncol(numeric_or_integer_columns)) {
-  if (!is.integer(numeric_or_integer_columns[, i])) {
-    numeric_or_integer_columns[, i] <- as.integer(numeric_or_integer_columns[, i])
-  }
-}
+
 ```{r}
 #4 ERROR MESSAGE
 #Error in 1:ncol(numeric_or_integer_columns) : argument of length 0
@@ -46,7 +42,6 @@ for (i in 1:ncol(numeric_or_integer_columns)) {
 
 
 #B. Load the example.File.txt
-#B
 ```{r}
 #Read the complete file using readLines.
 lines <- readLines("exampleFile.txt")
@@ -63,30 +58,30 @@ data_lines
 date <- gsub("^// Survey data. Created : ", "", comments[1])
 date
 ```
-#a. Split the character vectors in the vector containing data lines by semicolon (;) using strsplit.
+a. Split the character vectors in the vector containing data lines by semicolon (;) using strsplit.
 ```{r}
 split_data <- strsplit(data_lines, ";")
 split_data
 ```
-#Find the maximum number of fields retrieved by split. Append rows that are shorter with NA's.
+b. Find the maximum number of fields retrieved by split. Append rows that are shorter with NA's.
 ```{r}
 
-max_fields <- max(sapply(split_data, length))
-max_fields
+maximum_fields <- max(sapply(split_data, length))
+maximum_fields
 
-split_data <- lapply(split_data, function(x) c(x, rep(NA, max_fields - length(x))))
+split_data <- lapply(split_data, function(x) c(x, rep(NA, maximum_fields - length(x))))
 split_data
 ```
-#Use unlist and matrix to transform the data to row-column format.
+c. Use unlist and matrix to transform the data to row-column format.
 ```{r}
-data_matrix <- matrix(unlist(split_data), ncol = max_fields, byrow = TRUE)
+data_matrix <- matrix(unlist(split_data), ncol = maximum_fields, byrow = TRUE)
 data_matrix
 ```
-#From comment lines 2-4, extract the names of the fields. Set these as colnames for the matrix you just created.
+d. From comment lines 2-4, extract the names of the fields. Set these as colnames for the matrix you just created.
 ```{r}
-fieldNames <- gsub("^// Field [0-9]+: ", "", comments[2:4])
-fieldNames
+field_Names <- gsub("^// Field [0-9]+: ", "", comments[2:4])
+field_Names
 
-colnames(data_matrix) <- fieldNames
+colnames(data_matrix) <- field_Names
 colnames(data_matrix)
 ```
