@@ -518,3 +518,26 @@ CSV
 write.csv(All50_Prod_Reviews, "All_50Product_Reviews.csv")
 
 ```
+
+## Writing Table to Database
+
+```{r}
+
+dbWriteTable(connection, 'lab_exer2_prods', All50_Prod_Reviews, append = TRUE)
+```
+
+### LISTING TABLES AND FIELDS
+
+```{r}
+dbListTables(connection)
+dbListFields(connection,"lab_exer2_prods")
+```
+
+### READING DATA FROM TABLE
+
+```{r}
+
+review_data <- dbGetQuery(connection, "SELECT * FROM gallenero.lab_exer2_prods")
+glimpse(review_data)
+
+```
