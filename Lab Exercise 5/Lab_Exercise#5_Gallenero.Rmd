@@ -1,0 +1,41 @@
+---
+title: "Lab_Exercise#5_Gallenero"
+output: html_document
+date: "2024-03-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Cleaning of Lab Exercise 4
+
+```{r, warning=FALSE}
+
+library(readr)
+library(stringr)
+library(dplyr)
+
+# Load the Arxiv Scraped Dataset
+scraped_arxiv <- read_csv("/cloud/project/Lab Exercise 5/arxiv_agriculture.csv")
+
+# Extracting the date from the meta column
+date_arxiv <- str_extract(scraped_arxiv$meta, "\\d+\\s[A-Za-z]+\\s\\d+")
+
+# Changing to date type
+date_type_arxiv <- as.Date(date_arxiv, format = "%d %b %Y")
+head(date_arxiv)
+
+# Removing the meta and number columns and adding the new date column.
+# Mutating all of it, converting other columns to lowercase, eliminate parenthesis text in the subject column, and combining the new date column.
+
+cleaned_arxiv <- scraped_arxiv %>%
+  mutate(date = date_type_arxiv,
+         subject = gsub("\\s\\(.*\\)", "", subject),
+         across(where(is.character), tolower)) %>%
+  select(-meta, -...1)
+
+# Writing to CSV
+write.csv(cleaned_arxiv, "/cloud/project/Lab Exercise 5/arxiv_agri_cleaned.csv")
+
+```
