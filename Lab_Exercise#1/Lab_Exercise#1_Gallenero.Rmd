@@ -307,7 +307,6 @@ luggage_products
 scraped_products <- rbind(luggage_products, Makeup_products)
 scraped_products
 ```
-```
 
 THE TEN PRODUCTS
 PRODUCT #1
@@ -435,7 +434,7 @@ product2 = data.frame()
 scrapedCategory <- "Makeup"
 
 
-#LINK 1
+LINK 1
 
   link = "https://www.amazon.com.au/LOreal-Paris-Match-Concealer-Vanilla/product-reviews/B073QT9968/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
   
